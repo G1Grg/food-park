@@ -68,4 +68,26 @@ goto: https://laravel.com/docs/11.x/starter-kits#laravel-breeze
 4. npm install
 5. npm run dev
 
-##
+## Creating a User Levels (user and admin)
+
+This site will have two main roles: User and Admin.
+They will have separate functionality based on the type of roles:
+The term <b>User</b> will be any user who will be able to access website and will have limited functionality.
+The term <b>Admin</b> will be all other user who will have full control over the system.
+
+<br/>
+<ul>
+<li>Create a new column in users table.</li>
+<li>The columns will be avatar with string data type and default image. 
+Create a new folder in public and name it uploads. This will store all of our images. The default image is uploaded under public ->uploads folder. <br/>
+-->$table->text('avatar')->default('/uploads/user.png');
+</li>
+<li>Add another column role with enum data type. It will take two parameter. 
+First the column name and second array. The column name will be 'role' and second array data are 'user' and 'admin'. The default will be user.<br/>
+--> $table->enum('role',['user','admin'])->default('user');
+</li>
+<li>Run the command: <br/>
+--> php artisan migrate:fresh to migrate all fresh data to the database
+</li>
+</ul>
+This way we have successfully added columns in the database
