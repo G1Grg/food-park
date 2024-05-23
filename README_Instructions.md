@@ -4,15 +4,16 @@ https://code.visualstudio.com/
 
 ## VS-Code Extensions
 
-Andromedia --> Dark Theme
-Laravel Extension Pack
-Laravel Blade Wrapper
-Laravel Blade Spacer
-Laravel Snippet
-Laravel IDE-helper:
---> This doesn't work in itself. So, use the following commands
---> composer require --dev barryvdh/laravel-ide-helper
---> php artisan ide-helper:generate
+Andromedia --> Dark Theme<br/>
+Laravel Extension Pack<br/>
+Laravel Blade Wrapper<br/>
+Laravel Blade Spacer<br/>
+Laravel Snippet<br/>
+Laravel IDE-helper:<br/>
+
+--> This doesn't work in itself. So, use the following commands<br/>
+--> composer require --dev barryvdh/laravel-ide-helper<br/>
+--> php artisan ide-helper:generate<br/>
 
 This will generate a new file in root directory of your project with name: ##(\_ide_helper.php)
 
