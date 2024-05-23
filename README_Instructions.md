@@ -49,9 +49,9 @@ https://laragon.org/download/index.html
 
 ## Installing Laravel using command
 
-1. Installing Composer using command
+1. Installing Composer using command<br/>
    composer global require laravel/installer
-2. Creating a new Application
+2. Creating a new Application<br/>
    laravel new food-park (Where food-park is the name of the project/application)
 
 ## Github (login if required)
@@ -67,6 +67,5 @@ goto: https://laravel.com/docs/11.x/starter-kits#laravel-breeze
 3. php artisan migrate
 4. npm install
 5. npm run dev
-6.
 
 ##
