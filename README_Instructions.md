@@ -139,7 +139,6 @@ By default, the dashboard is already created for user. We will add View, Control
    <code>
    php artisan make:controller Admin/AdminDashboardController
    </code>
-   <br/>
 
 2. Create a new adminDashboard.blade.php file in views/admin/Dashboard
    This will contain the adminDashboard contents
@@ -150,14 +149,14 @@ By default, the dashboard is already created for user. We will add View, Control
    return view ('adminDashboard.blade.php');
    }
    </code>
-   <br/>
 
 4. Create a Route path to access the controller
    <code>
    Route::get('/admin/dashboard',[AdminDashboardController::class,'index']->middleware('auth')->name('admin.index');
    </code>
-   <br/>
 
 5. Run the program
-   npm run dev
+   <code>
+   npm run dev<br/>
    php artisan serve
+   </code>
