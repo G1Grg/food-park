@@ -98,3 +98,35 @@ This way we have successfully added columns in the database
 
 php artisan make:seeder UserSeeder<br/>
 Location: Seeders --> UserSeeder
+This command will create a new seeder. <br/>
+
+Since, we are inserting a new user in the model "User", We will use
+the following code. in UserSeeder.
+<br/>
+<code>
+public function run(): void
+{
+User::insert([
+[
+'name' => 'Admin',
+'email' => 'admin@gmail.com',
+'role' => 'admin',
+'password' => Hash::make('password')
+],
+[
+'name' => 'user',
+'email' => 'user@gmail.com',
+'role' => 'user',
+'password' => Hash::make('password')
+]
+
+        ]);
+    }
+
+</code>
+
+Now, all we need to do is call the DatabaseSeeder.php
+Use the following code to call the seeder class we just created.<br/>
+<code>
+$this->call(UserSeeder::class);
+</code>
