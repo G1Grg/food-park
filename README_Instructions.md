@@ -130,3 +130,34 @@ Use the following code to call the seeder class we just created.<br/>
 <code>
 $this->call(UserSeeder::class);
 </code>
+
+## Creating Separate Dashboard for Admin and User
+
+By default, the dashboard is already created for user. We will add View, Controller, and Route to create separate dashboard for Admin.
+
+1. Create a Controller for Admin <br/>
+   <code>
+   php artisan make:controller Admin/AdminDashboardController
+   </code>
+   <br/>
+
+2. Create a new adminDashboard.blade.php file in views/admin/Dashboard
+   This will contain the adminDashboard contents
+
+3. Add an index() method in AdminDashboardController
+   <code>
+   function index() : view {
+   return view ('adminDashboard.blade.php');
+   }
+   </code>
+   <br/>
+
+4. Create a Route path to access the controller
+   <code>
+   Route::get('/admin/dashboard',[AdminDashboardController::class,'index']->middleware('auth')->name('admin.index');
+   </code>
+   <br/>
+
+5. Run the program
+   npm run dev
+   php artisan serve
