@@ -29,19 +29,20 @@ Font Size --> 18
 
 ## Settings.json (open User settings)
 
-"php.validate.executablePath": "C:\\laragon\\bin\\php\\php-8.3.6-nts-Win32-vs16-x64\\php.exe",
+<code>"php.validate.executablePath": "C:\\laragon\\bin\\php\\php-8.3.6-nts-Win32-vs16-x64\\php.exe",
 
-"artisan.php.location": "C:\\laragon\\bin\\php\\php-8.3.6-nts-Win32-vs16-x64\\php.exe",
+"artisan.php.location": "C:\\laragon\\bin\\php\\php-8.3.6-nts-Win32-vs16-x64\\php.exe",</code>
 
 ## (Do this if you want to change the default Terminal of VS-Code to cmder(default terminal of Laragon))
 
+<code>
 "terminal.integrated.profiles.windows": {
 "laragon": {
 "path": "${env:windir}\\System32\\cmd.exe",
 "args": ["/k", "C:\\laragon\\bin\\cmder\\vendor\\bin\\vscode_init.cmd"]
 }
 },
-"terminal.integrated.defaultProfile.windows": "laragon",
+"terminal.integrated.defaultProfile.windows": "laragon",</code>
 
 ## Installing Laragon (Download Full Version)
 
@@ -87,7 +88,13 @@ First the column name and second array. The column name will be 'role' and secon
 --> $table->enum('role',['user','admin'])->default('user');
 </li>
 <li>Run the command: <br/>
---> php artisan migrate:fresh to migrate all fresh data to the database
+--> php artisan migrate:fresh<br/>
+to migrate all fresh data to the database
 </li>
 </ul>
 This way we have successfully added columns in the database
+
+## Add New Seeders for User and Admin
+
+php artisan make:seeder UserSeeder<br/>
+Location: Seeders --> UserSeeder
