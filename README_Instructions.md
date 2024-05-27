@@ -160,3 +160,69 @@ By default, the dashboard is already created for user. We will add View, Control
    npm run dev<br/>
    php artisan serve
    </code>
+
+# Creating Middleware for Multi-Auth
+
+So, admin or user can enter to either of the dashboards.
+With creating Middleware, we can separate user and admin controls.
+
+Admin can login as both user and admin, while user can access their account, but cannot login into admin dashboard.
+
+To make it happen, let us create a new middleware as RoleMiddleware:
+Open Terminal, and enter the following command
+<code>
+php artisan make:middleware RoleMiddleware
+</code>
+The <b>RoleMiddleware</b> is located in App/Http/Middleware
+
+After creating RoleMiddeware, create an alias for the middeware, so we can use the middelware in all the application with a single name instead of calling the entire class.<br/>
+
+In laravel 11.X, the middleware config is located in:
+bootstrap/app.php
+
+Add the following code in the app.php.
+<code>
+withMiddleware(function (Middleware $middleware) {
+$middleware->alias([
+'role' => \App\Http\Middleware\RoleMiddleware::class,
+]);
+})
+
+</code>
+
+Now, open the RoleMiddleware.php file and write your logic.</br>
+a. First add a new parameter <b>$role</b>. This will take a value admin or user based on the value sent from Middleware.
+The logic will be as:
+
+Before:
+<code>
+public function handle(Request $request, Closure $next): Response
+{
+    return $next($request);
+}
+</code>
+
+After:
+<code>
+public function handle(Request $request, Closure $next, $role): Response
+    {
+        if ($request->user()->role === $role) {
+            return $next($request);
+}
+
+        to_route('dashboard');
+    }
+
+</code>>
+
+How it works?
+The middleware created has an alias as role.
+The "$role" in logic part of RoleMiddleware.php, will act as a parameter to accept the value sent through web.php defined by [middleware('auth', 'role:admin')] section in web.php
+
+If statement will request a user table with role column and check to see if the role is admin. If the role is admin, it will proceed to the request and load the dashboard.<br/>
+At this moment, both user and admin will access to user dashboard.
+<br/>
+Configure web.php route file:
+<code>
+Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->middleware('auth', 'role:admin')->name('admin.dashboard');
+</code>
