@@ -20,5 +20,12 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
+// Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
-Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->middleware('auth', 'role:admin')->name('admin.dashboard');
+//     Route::get('dashboard', [AdminDashboardController::class, 'index'])->middleware('auth', 'role:admin')->name('dashboard');
+// });
+// // Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->middleware('auth', 'role:admin')->name('admin.dashboard');
+
+// Route::prefix('admin')->name('admin.')->group(function () {
+//     Route::get('dashboard', [AdminDashboardController::class, 'index'])->middleware('auth', 'role:admin')->name('dashboard');
+// });

@@ -16,9 +16,11 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, $role): Response
     {
         if ($request->user()->role === $role) {
+            // dd('goes to admin...');
             return $next($request);
         }
 
+        // dd('go to user...');
         to_route('dashboard');
     }
 }
