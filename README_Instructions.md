@@ -234,7 +234,7 @@ Now, we have to solve the issue by identifying the type of user and based on tha
 
 ## Multi-Auth Redirect to Dashboard Depending on Role
 
-The changes is made in AuthenticatedSessionController.php, which is a default page created when breeze authetication was created.
+The changes is made in AuthenticatedSessionController.php, which is a default page created when breeze authentication was created.
 The command to create authentication using breeze is:
 
 1. composer require laravel/breeze --dev
@@ -260,3 +260,64 @@ $request->authenticate();
     }
 
 </code>
+
+## Multi-Auth Create Separate Route files for Admin and User
+
+The changes are made on the following files:
+A. routes/admin.php<br/>
+Created a new file in routes folder and named it admin.php. This file will contain all the routes related to admin.
+
+The file contain the following code:
+<code>
+
+<?php
+
+use App\Http\Controllers\Admin\AdminDashboardController;
+use Illuminate\Support\Facades\Route;
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+
+    Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+});
+
+</code>
+
+Note: Since the file is php, we start with <?php ><br/>
+
+Two ways to group:
+a. <code>Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+
+    Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+});
+</code>
+
+b. <code> 
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('dashboard', [AdminDashboardController::class, 'index'])->middleware('auth', 'role:admin')->name('dashboard');
+});
+
+</code>
+
+Be careful while choosing the type of grouping in routing.
+
+B. bootstrap/app.php
+
+<b>bootstrap/app.php</b>
+Changes made in bootstrap/app.php <br/>
+<code>
+->withRouting(
+web: **DIR** . '/../routes/web.php',
+commands: **DIR** . '/../routes/console.php',
+
+         health: '/up',
+         then: function () {
+             Route::middleware(['web', 'auth', 'role:admin'])
+                 ->group(base_path('routes/admin.php'));
+         }
+
+    )
+
+</code>
+
+The middleware is added to the configuration file, with arguments 'web','auth', and 'role:admin'
+and setting its base path to 'routes/admin.php'.
