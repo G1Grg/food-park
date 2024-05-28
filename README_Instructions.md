@@ -152,7 +152,7 @@ By default, the dashboard is already created for user. We will add View, Control
 
 4. Create a Route path to access the controller
    <code>
-   Route::get('/admin/dashboard',[AdminDashboardController::class,'index']->middleware('auth')->name('admin.index');
+   Route::get('admin/dashboard',[AdminDashboardController::class,'index']->middleware('auth')->name('admin.index');
    </code>
 
 5. Run the program
@@ -180,8 +180,8 @@ After creating RoleMiddeware, create an alias for the middeware, so we can use t
 In laravel 11.X, the middleware config is located in:
 bootstrap/app.php
 
-Add the following code in the app.php.
-<code>
+Add the following code in the app.php
+
 withMiddleware(function (Middleware $middleware) {
 $middleware->alias([
 'role' => \App\Http\Middleware\RoleMiddleware::class,
@@ -224,5 +224,39 @@ At this moment, both user and admin will access to user dashboard.
 <br/>
 Configure web.php route file:
 <code>
-Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->middleware('auth', 'role:admin')->name('admin.dashboard');
+Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->middleware('auth', 'role:admin')->name('admin.dashboard');
+</code>
+
+## Issue at the moment
+
+When we try to login using admin or user credentials, the page is redirecting to user dashboard.
+Now, we have to solve the issue by identifying the type of user and based on that, redirecting them to the correct dashboard.
+
+## Multi-Auth Redirect to Dashboard Depending on Role
+
+The changes is made in AuthenticatedSessionController.php, which is a default page created when breeze authetication was created.
+The command to create authentication using breeze is:
+
+1. composer require laravel/breeze --dev
+2. php artisan breeze:install
+
+Back to project:
+In the page, AuthenticatedSessionController.php, use a if condition to check for the request in a user table with role admin, inside Store() function.
+
+Since, $request is used, we can import any tables created in database and its columns.
+The code to add inside store() function is:
+<code>
+public function store(LoginRequest $request): RedirectResponse
+{
+$request->authenticate();
+
+        $request->session()->regenerate();
+
+        <b>if ($request->user()->role === 'admin') {
+
+            return redirect()->intended('admin/dashboard');
+        }</b>
+        return redirect()->intended(route('dashboard', absolute: false));
+    }
+
 </code>
