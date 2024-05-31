@@ -55,8 +55,8 @@
 
 @section('content')
     <!--=============================
-                                                                                                                 BREADCRUMB START
-                                                                                                            ==============================-->
+                                                                                                                     BREADCRUMB START
+                                                                                                                ==============================-->
     {{-- <style>
         .background {}
     </style> --}}
@@ -74,13 +74,13 @@
         </div>
     </section>
     <!--=============================
-                                                                                                            BREADCRUMB END
-                                                                                                            ==============================-->
+                                                                                                                BREADCRUMB END
+                                                                                                                ==============================-->
 
 
     <!--=========================
-                                SIGN UP START
-                                ==========================-->
+                                    SIGN UP START
+                                    ==========================-->
     <section class="fp__signup" style="background: url({{ asset('frontend/images/login_bg.jpg') }});">
         <div class="fp__signup_overlay pt_125 xs_pt_95 pb_100 xs_pb_70">
             <div class="container">
@@ -89,7 +89,7 @@
                         <div class="fp__login_area">
                             <h2>Welcome back!</h2>
                             <p>sign up to continue</p>
-                            <form route={{ route('register') }} method="POST">
+                            <form action={{ route('register') }} method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-xl-12">
@@ -137,6 +137,6 @@
         </div>
     </section>
     <!--=========================
-                                                                                                       SIGN UP END
-                                                                                                       ==========================-->
+                                                                                                           SIGN UP END
+                                                                                                           ==========================-->
 @endsection
