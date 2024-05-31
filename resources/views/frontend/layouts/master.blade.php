@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/jquery.exzoom.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('frontend/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
     <!-- <link rel="stylesheet" href="css/rtl.css"> -->
@@ -123,6 +124,22 @@
     <!--main/custom js-->
     <script src="{{ asset('frontend/js/main.js') }}"></script>
 
+    <!-- toastr js-->
+    <script src="{{ asset('frontend/js/toastr.min.js') }}"></script>
+
+
+    <!-- documentation for toastr.js
+    https://github.com/yoeunes/toastr?tab=readme-ov-file
+    https://github.com/CodeSeven/toastr -->
+
+    <script>
+        toastr.options.progressbar = true;
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                toastr.error("{{ $error }}")
+            @endforeach
+        @endif
+    </script>
 </body>
 
 </html>
