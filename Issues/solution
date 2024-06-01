@@ -1,0 +1,9 @@
+While checking for forget password and reset password, there was the following error:
+"Trying to access array offset on null"
+
+This situation is related to connection to the smtp. For this instance: mailtrap
+
+Solution:
+Ensure you select the correct version of laravel
+Copy and paste the configuration.
+If password has \*\*\*\*, that is what has caused the error.

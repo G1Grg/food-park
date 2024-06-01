@@ -27,8 +27,8 @@
 
 @section('content')
     <!--=============================
-                                                                                                        BREADCRUMB START
-                                                                                                    ==============================-->
+                            BREADCRUMB START
+                            ==============================-->
     <section class="fp__breadcrumb" style="background: url({{ asset('frontend/images/counter_bg.jpg') }});">
         <div class="fp__breadcrumb_overlay">
             <div class="container">
@@ -43,13 +43,13 @@
         </div>
     </section>
     <!--=============================
-                                BREADCRUMB END
-                                ==============================-->
-
+                            BREADCRUMB END
+                            ==============================-->
 
     <!--=========================
-                                    FORGOT PASSWORD START
-                                    ==========================-->
+                            FORGOT PASSWORD START
+                            ==========================-->
+
     <section class="fp__signin" style="background: url({{ asset('frontend/images/login_bg.jpg') }});">
         <div class="fp__signin_overlay pt_125 xs_pt_95 pb_100 xs_pb_70">
             <div class="container">
@@ -64,7 +64,8 @@
                                     <div class="col-xl-12">
                                         <div class="fp__login_imput">
                                             <label>email</label>
-                                            <input type="email" placeholder="Email" name="email">
+                                            <input id ="email" type="email" name="email" :value="old('email')"
+                                                required value="{{ old('email') }}" placeholder="Email">
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
@@ -85,6 +86,6 @@
         </div>
     </section>
     <!--=========================
-                                                                                                            FORGOT PASSWORD END
-                                                                                                        ==========================-->
+                            FORGOT PASSWORD END
+                            ==========================-->
 @endsection
