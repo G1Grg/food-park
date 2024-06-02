@@ -9,6 +9,7 @@
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/toastr.min.css') }}" />
 
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap/css/bootstrap.min.css') }}">
@@ -49,7 +50,9 @@
                             </div>
 
                             <div class="card-body">
-                                <form method="POST" action="#" class="needs-validation" novalidate="">
+                                <form method="POST" action="{{ route('admin.dashboard') }}" class="needs-validation"
+                                    novalidate="">
+                                    @csrf
                                     <div class="form-group">
                                         <label for="email">Email</label>
                                         <input id="email" type="email" class="form-control" name="email"
@@ -89,29 +92,13 @@
                                         </button>
                                     </div>
                                 </form>
-                                <div class="mb-3 mt-4 text-center">
-                                    <div class="text-job text-muted">Login With Social</div>
-                                </div>
-                                <div class="row sm-gutters">
-                                    <div class="col-6">
-                                        <a class="btn btn-block btn-social btn-facebook">
-                                            <span class="fab fa-facebook"></span> Facebook
-                                        </a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a class="btn btn-block btn-social btn-twitter">
-                                            <span class="fab fa-twitter"></span> Twitter
-                                        </a>
-                                    </div>
-                                </div>
+
 
                             </div>
                         </div>
-                        <div class="text-muted mt-5 text-center">
-                            Don't have an account? <a href="auth-register.html">Create One</a>
-                        </div>
+
                         <div class="simple-footer">
-                            Copyright &copy; Stisla 2018
+                            Copyright &copy; Jeevan
                         </div>
                     </div>
                 </div>
@@ -127,6 +114,8 @@
     <script src="{{ asset('admin/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/moment.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/stisla.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/toastr.min.js') }}"></script>
+
 
     <!-- JS Libraies -->
 
@@ -135,6 +124,24 @@
     <!-- Template JS File -->
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+    @if (session('status'))
+        var type = "{{ session('alert-type', 'info') }}";
+        switch (type) {
+        case 'info':
+        toastr.info("{{ session('status') }}");
+        break;
+        case 'warning':
+        toastr.warning("{{ session('status') }}");
+        break;
+        case 'success':
+        toastr.success("{{ session('status') }}");
+        break;
+        case 'error':
+        toastr.error("{{ session('status') }}");
+        break;
+        }
+    @endif
 </body>
 
 </html>

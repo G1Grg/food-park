@@ -12,4 +12,9 @@ class FrontendController extends Controller
     {
         return  view('frontend.home.index');
     }
+
+    function dashboard(): View
+    {
+        return  view('dashboard');
+    }
 }
