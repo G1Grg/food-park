@@ -9,12 +9,14 @@ use Illuminate\Support\Facades\Route;
 // front end controller route
 
 Route::get('/', [FrontendController::class, 'index'])->name('home');
-Route::get('dashboard', [FrontendController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 // admin auth controller route
 
-Route::get('/admin/login', [AdminAuthController::class, 'index'])->name('admin.index');
-Route::POST('admin/dashboard', [AdminAuthController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('admin/login', [AdminAuthController::class, 'index'])->name('admin.index');
+// Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard.index');
 
 
 // profile controller route

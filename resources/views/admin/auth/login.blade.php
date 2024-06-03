@@ -50,13 +50,13 @@
                             </div>
 
                             <div class="card-body">
-                                <form method="POST" action="{{ route('admin.dashboard') }}" class="needs-validation"
+                                <form method="POST" action="{{ route('login') }}" class="needs-validation"
                                     novalidate="">
                                     @csrf
                                     <div class="form-group">
                                         <label for="email">Email</label>
                                         <input id="email" type="email" class="form-control" name="email"
-                                            tabindex="1" required autofocus>
+                                            tabindex="1" required autofocus value="{{ old('email') }}">
                                         <div class="invalid-feedback">
                                             Please fill in your email
                                         </div>
@@ -92,13 +92,11 @@
                                         </button>
                                     </div>
                                 </form>
-
-
                             </div>
                         </div>
 
                         <div class="simple-footer">
-                            Copyright &copy; Jeevan
+                            Copyright &copy; Stisla 2018
                         </div>
                     </div>
                 </div>
@@ -125,23 +123,31 @@
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
 
-    @if (session('status'))
-        var type = "{{ session('alert-type', 'info') }}";
-        switch (type) {
-        case 'info':
-        toastr.info("{{ session('status') }}");
-        break;
-        case 'warning':
-        toastr.warning("{{ session('status') }}");
-        break;
-        case 'success':
-        toastr.success("{{ session('status') }}");
-        break;
-        case 'error':
-        toastr.error("{{ session('status') }}");
-        break;
-        }
-    @endif
+    <script>
+        toastr.options.progressbar = true;
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                toastr.error("{{ $error }}")
+            @endforeach
+        @endif
+        @if (session('status'))
+            var type = "{{ session('alert-type', 'info') }}";
+            switch (type) {
+                case 'info':
+                    toastr.info("{{ session('status') }}");
+                    break;
+                case 'warning':
+                    toastr.warning("{{ session('status') }}");
+                    break;
+                case 'success':
+                    toastr.success("{{ session('status') }}");
+                    break;
+                case 'error':
+                    toastr.error("{{ session('status') }}");
+                    break;
+            }
+        @endif
+    </script>
 </body>
 
 </html>

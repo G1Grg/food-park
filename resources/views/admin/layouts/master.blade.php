@@ -9,6 +9,7 @@
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/toastr.min.css') }}">
 
 
 
@@ -59,10 +60,39 @@
     <script src="{{ asset('admin/assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('admin/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/stisla.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/toastr.min.js') }}"></script>
+
 
     <!-- Template JS File -->
     <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
     <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
+
+    <script>
+        toastr.options.progressbar = true;
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                toastr.error("{{ $error }}")
+            @endforeach
+        @endif
+
+        @if (session('status'))
+            var type = "{{ session('alert-type', 'info') }}";
+            switch (type) {
+                case 'info':
+                    toastr.info("{{ session('status') }}");
+                    break;
+                case 'warning':
+                    toastr.warning("{{ session('status') }}");
+                    break;
+                case 'success':
+                    toastr.success("{{ session('status') }}");
+                    break;
+                case 'error':
+                    toastr.error("{{ session('status') }}");
+                    break;
+            }
+        @endif
+    </script>
 </body>
 
 </html>
