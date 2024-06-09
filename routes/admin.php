@@ -10,8 +10,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     // Profile Route
     Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
+    Route::get('profile/update_password', [ProfileController::class, 'updateProfilePassword'])->name('profile.update.password');
 
-    Route::put('profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
-
-    Route::PUT('profile/update_password', [ProfileController::class, 'updateProfilePassword'])->name('profile.update.password');
+    
 });
