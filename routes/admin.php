@@ -9,5 +9,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     // Profile Route
-    Route::get('dashboard', [ProfileController::class, 'index'])->name('profile');
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+
+    Route::put('profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
+
+    Route::PUT('profile/update_password', [ProfileController::class, 'updateProfilePassword'])->name('profile.update.password');
 });

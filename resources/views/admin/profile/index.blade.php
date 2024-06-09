@@ -9,23 +9,24 @@
         <div class="card card-primary">
             <div class="card-header">
                 <h4>Update User Profile</h4>
-                <div class="card-header-action">
-                    <a href="#" class="btn btn-primary">
-                        View All
-                    </a>
-                </div>
             </div>
             <div class="card-body">
-                <form action="#">
+                <form action="{{ route('admin.profile.update') }}" method ="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="name">
+                        <input type="text" class="form-control" name="name" value="{{ auth()->user()->name }}">
                     </div>
 
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="text" class="form-control" name="email">
+                        <input type="text" class="form-control" name="email" value="{{ auth()->user()->email }}">
                     </div>
+
+
+                    <button class="btn btn-primary" type="submit">Save</button>
+
                 </form>
             </div>
         </div>
@@ -33,22 +34,28 @@
         <div class="card card-primary">
             <div class="card-header">
                 <h4>Update User Password</h4>
-                <div class="card-header-action">
-                    <a href="#" class="btn btn-primary">
-                        View All
-                    </a>
-                </div>
             </div>
             <div class="card-body">
-                <form action="#">
+                <form action="{{ route('admin.profile.update.password') }}" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="text" class="form-control" name="password">
+                        <label>Current Password</label>
+                        <input type="password" class="form-control" name="current_password">
+                    </div>
+
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input type="password" class="form-control" name="password">
                     </div>
 
                     <div class="form-group">
                         <label>Confirm Password</label>
-                        <input type="text" class="form-control" name="password confirmation">
+                        <input type="password" class="form-control" name="password_confirmation">
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Save</button>
                     </div>
                 </form>
             </div>
