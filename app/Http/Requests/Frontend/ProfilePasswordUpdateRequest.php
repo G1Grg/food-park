@@ -4,7 +4,7 @@ namespace App\Http\Requests\Frontend;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileUpdateRequest extends FormRequest
+class ProfilePasswordUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,7 @@ class ProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'max:60'],
-            // .auth()->user()->id is used to concantenate the email ID of the current user
-            'email' => ['required', 'email', 'unique:users,email,' . auth()->user()->id]
+            //
         ];
     }
 }

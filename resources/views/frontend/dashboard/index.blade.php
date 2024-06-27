@@ -2,8 +2,8 @@
 
 @section('content')
     <!--=============================
-                                                            BREADCRUMB START
-                                                        ==============================-->
+                                                                                        BREADCRUMB START
+                                                                                    ==============================-->
     <section class="fp__breadcrumb" style="background: url(images/counter_bg.jpg);">
         <div class="fp__breadcrumb_overlay">
             <div class="container">
@@ -18,13 +18,13 @@
         </div>
     </section>
     <!--=============================
-                                                            BREADCRUMB END
-                                                        ==============================-->
+                                                                                        BREADCRUMB END
+                                                                                    ==============================-->
 
 
     <!--=========================
-                                                            DASHBOARD START
-                                                        ==========================-->
+                                                                                        DASHBOARD START
+                                                                                    ==========================-->
     <section class="fp__dashboard mt_120 xs_mt_90 mb_100 xs_mb_70">
         <div class="container">
             <div class="fp__dashboard_area">
@@ -37,14 +37,14 @@
                                     <label for="upload"><i class="far fa-camera"></i></label>
                                     <input type="file" id="upload" hidden>
                                 </div>
-                                <h2>hasib ahmed</h2>
+                                <h2>{{ Auth()->user()->name }}</h2>
                             </div>
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                 aria-orientation="vertical">
                                 <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-home" type="button" role="tab"
                                     aria-controls="v-pills-home" aria-selected="true"><span><i
-                                            class="fas fa-user"></i></span> Parsonal Info</button>
+                                            class="fas fa-user"></i></span> Personal Info</button>
 
                                 <button class="nav-link" id="v-pills-address-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-address" type="button" role="tab"
@@ -117,8 +117,8 @@
                                             </h4>
 
                                             <div class="personal_info_text">
-                                                <p><span>Name:</span> Hasib Ahmed</p>
-                                                <p><span>Email:</span> hasibahmed@gmail.com</p>
+                                                <p><span>Name:</span> {{ Auth()->user()->name }}</p>
+                                                <p><span>Email:</span> {{ Auth()->user()->email }}</p>
                                             </div>
 
                                             <div class="fp_dash_personal_info_edit comment_input p-0">
@@ -129,13 +129,15 @@
                                                         <div class="col-12">
                                                             <div class="fp__comment_imput_single">
                                                                 <label>name</label>
-                                                                <input type="text" placeholder="Name" name="name">
+                                                                <input type="text" placeholder="Name" name="name"
+                                                                    value="{{ auth()->user()->name }}">
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-12 col-lg-12">
                                                             <div class="fp__comment_imput_single">
                                                                 <label>email</label>
-                                                                <input type="email" placeholder="Email" name="email">
+                                                                <input type="email" placeholder="Email" name="email"
+                                                                    value="{{ auth()->user()->email }}">
                                                             </div>
                                                         </div>
 
@@ -1135,40 +1137,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
-                                    aria-labelledby="v-pills-settings-tab">
-                                    <div class="fp_dashboard_body fp__change_password">
-                                        <div class="fp__review_input">
-                                            <h3>change password</h3>
-                                            <div class="comment_input pt-0">
-                                                <form>
-                                                    <div class="row">
-                                                        <div class="col-xl-6">
-                                                            <div class="fp__comment_imput_single">
-                                                                <label>Current Password</label>
-                                                                <input type="password" placeholder="Current Password">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-6">
-                                                            <div class="fp__comment_imput_single">
-                                                                <label>New Password</label>
-                                                                <input type="password" placeholder="New Password">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-12">
-                                                            <div class="fp__comment_imput_single">
-                                                                <label>confirm Password</label>
-                                                                <input type="password" placeholder="Confirm Password">
-                                                            </div>
-                                                            <button type="submit"
-                                                                class="common_btn mt_20">submit</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @include('frontend.dashboard.change-password')
 
                             </div>
                         </div>
@@ -1264,6 +1233,6 @@
     </div>
     <!-- CART POPUT END -->
     <!--=========================
-                                                            DASHBOARD END
-                                                        ==========================-->
+                                                                                        DASHBOARD END
+                                                                                    ==========================-->
 @endsection
